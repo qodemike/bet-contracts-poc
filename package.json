@@ -6,12 +6,17 @@
   "author": "",
   "license": "ISC",
   "description": "Shared bet contracts",
+  "type": "module",
   "scripts": {
-    "generate:proto": "protoc --ts_proto_out=./libs/ts/generated --ts_proto_opt=onlyTypes=true,outputServices=none,esModuleInterop=true,fileSuffix=.pb -I ./contracts ./contracts/bet.proto"
+    "generate:proto": "protoc --ts_proto_out=./libs/generated --ts_proto_opt=onlyTypes=true,outputServices=none,esModuleInterop=true,fileSuffix=.pb -I ./contracts ./contracts/*"
   },
   "devDependencies": {
+    "@types/node": "^25.5.2",
     "protoc": "^34.0.0",
     "ts-proto": "^2.11.6",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mongoose": "^9.4.1"
   }
 }

@@ -2,15 +2,28 @@ syntax = "proto3";
 
 package bets;
 
+enum BetStatus {
+  BET_STATUS_UNSPECIFIED = 0;
+  BET_STATUS_UNSETTLED = 1;
+  BET_STATUS_SETTLED = 2;
+  BET_STATUS_CANCELED = 3;
+}
+
+enum BetQueue {
+  BET_QUEUE_UNSPECIFIED = 0;
+  BET_QUEUE_LIVE_QUEUE = 1;
+  BET_QUEUE_PRE_QUEUE = 2;
+}
+
 // Competitor definition
 message Competitor {
   string id = 1;
   string name = 2;
-  string abbreviation = 3;
-  string qualifier = 4;
-  string country = 5;
-  string country_code = 6;
-  string gender = 7;
+  optional string abbreviation = 3;
+  optional string qualifier = 4;
+  optional string country = 5;
+  optional string country_code = 6;
+  optional string gender = 7;
 }
 
 // Outcome result
@@ -21,25 +34,25 @@ message OutcomeResult {
 
 // Bet definition
 message Bet {
-  string mongo_id = 1;               // Mongoose ObjectId as string
-  string ticket_id = 2;         // Mongoose ObjectId as string
-  string status = 3;            // "unsettled" | "settled" | "canceled"
-  string queue = 4;             // "live_queue" | "pre_queue"
+  string mongo_id = 1; // Mongoose ObjectId as string
+  string ticket_id = 2; // Mongoose ObjectId as string
+  BetStatus status = 3; // "unsettled" | "settled" | "canceled"
+  BetQueue queue = 4; // "live_queue" | "pre_queue"
   string event_id = 5;
-  string market_db_id = 6;      // Mongoose ObjectId as string
+  string market_db_id = 6; // Mongoose ObjectId as string
   string market_title = 7;
   string market_id = 8;
-  string specifiers = 9;        // nullable string
+  string specifiers = 9; // nullable string
   string outcome_id = 10;
   string outcome_name = 11;
   repeated OutcomeResult actual_outcome = 12;
   string odds = 13;
   repeated Competitor competitors = 14;
   string settlement_certainty = 15; // "1" | "2" | null
-  string settlement_result = 16;    // "1" | "0" | null
-  string final_resolution = 17;     // "won" | "lost" | "void" | null
-  string void_factor = 18;
-  string void_type = 19;            // "full" | "partial"
-  string void_reason = 20;
-  bool rollback = 21;
+  string settlement_result = 16; // "1" | "0" | null
+  string final_resolution = 17; // "won" | "lost" | "void" | null
+  optional string void_factor = 18;
+  optional string void_type = 19; // "full" | "partial"
+  optional string void_reason = 20;
+  optional bool rollback = 21;
 }

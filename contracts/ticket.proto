@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package bets;
+
+enum TicketType {
+  TICKET_TYPE_UNSPECIFIED = 0;
+  TICKET_TYPE_SINGLE = 1;
+  TICKET_TYPE_COMBINED = 2;
+}
+
+enum TicketStatus {
+  TICKET_STATUS_UNSPECIFIED = 0;
+  TICKET_STATUS_UNSETTLED = 1;
+  TICKET_STATUS_SETTLED = 2;
+  TICKET_STATUS_CANCELED = 3;
+}
+
+enum TicketFinalResolution {
+  TICKET_FINAL_RESOLUTION_UNSPECIFIED = 0;
+  TICKET_FINAL_RESOLUTION_WON = 1;
+  TICKET_FINAL_RESOLUTION_LOST = 2;
+  TICKET_FINAL_RESOLUTION_VOID = 3;
+}
+
+message Ticket {
+  string mongo_id = 1;
+  string player_id = 2;
+  string player_name = 3;
+  TicketType type = 4;
+  TicketStatus status = 5;
+  string total_odds = 6;
+  string currency_code = 7;
+  double stake = 8;
+  double projected_return = 9;
+  optional double actual_return = 10;
+  TicketFinalResolution final_resolution = 11;
+  repeated string bets = 12;
+}
