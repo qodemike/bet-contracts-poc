@@ -1,0 +1,17 @@
+{
+  "name": "bet-contracts",
+  "version": "0.1.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Shared bet contracts",
+  "scripts": {
+    "generate:proto": "protoc --ts_proto_out=./libs/ts/generated --ts_proto_opt=onlyTypes=true,outputServices=none,esModuleInterop=true,fileSuffix=.pb -I ./contracts ./contracts/bet.proto"
+  },
+  "devDependencies": {
+    "protoc": "^34.0.0",
+    "ts-proto": "^2.11.6",
+    "typescript": "^5.4.5"
+  }
+}
