@@ -1,10 +1,10 @@
 
-export type BetStatus = "unsettled" | "settled" | "canceled";
-export type BetQueue = "live_queue" | "pre_queue";
-export type SettlementCertainty = "1" | "2" | null;
-export type SettlementResult = "1" | "0" | null;
-export type FinalResolution = "won" | "lost" | "void" | null;
-export type VoidType = "full" | "partial";
+type BetStatus = "unsettled" | "settled" | "canceled";
+type BetQueue = "live_queue" | "pre_queue";
+type BetSettlementCertainty = "1" | "2" | null;
+type BetSettlementResult = "1" | "0" | null;
+type BetFinalResolution = "won" | "lost" | "void" | null;
+type BetVoidType = "full" | "partial";
 
 export interface CompetitorType {
   id: string;
@@ -36,11 +36,11 @@ export interface BetType {
   actual_outcome: OutcomeResultType[] | null;
   odds: string;
   competitors: CompetitorType[];
-  settlement_certainty: SettlementCertainty;
-  settlement_result: SettlementResult;
-  final_resolution: FinalResolution;
+  settlement_certainty: BetSettlementCertainty;
+  settlement_result: BetSettlementResult;
+  final_resolution: BetFinalResolution;
   void_factor?: string;
-  void_type?: VoidType;
+  void_type?: BetVoidType;
   void_reason?: string;
   rollback?: boolean;
 }
